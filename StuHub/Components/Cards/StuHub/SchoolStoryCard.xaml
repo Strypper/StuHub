@@ -12,36 +12,46 @@
     <controls:DropShadowPanel BlurRadius="10" ShadowOpacity="1" OffsetX="0" OffsetY="0"
                               Color="LightGray" HorizontalAlignment="Stretch" IsMasked="True">
         <StackPanel x:Name="MainLayout" HorizontalAlignment="Stretch" Background="{ThemeResource SystemChromeMediumLowColor}">
-            <Rectangle HorizontalAlignment="Stretch" Fill="{ThemeResource SystemAccentColor}" Height="5"/>
             <controls:DockPanel>
                 <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left" >
-                    <PersonPicture Margin="5" ProfilePicture="{Binding ProfileUrl, Mode=OneWay, ElementName=UserStory}"
-                                   BadgeImageSource="{Binding SchoolUrl, Mode=OneWay, ElementName=UserStory}"/>
+                    <Grid Width="100" Height="100" Margin="5">
+                        <Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                                CornerRadius="50" Padding="0">
+                            <Image Stretch="UniformToFill"
+                                   Source="{Binding ProfileUrl, Mode=OneWay, ElementName=UserStory}"/>
+                        </Button>
+                        <Button VerticalAlignment="Bottom" HorizontalAlignment="Right" CornerRadius="25"
+                                Height="40" Width="40" Padding="0" Background="White">
+                            <Image Stretch="UniformToFill"
+                                   Source="{Binding SchoolUrl, Mode=OneWay, ElementName=UserStory}"/>
+                        </Button>
+                    </Grid>
                     <StackPanel>
                         <TextBlock Text="{x:Bind StudentName, Mode=OneWay}" FontWeight="Bold" Margin="5" FontSize="20"/>
                         <TextBlock Text="1 minute ago" Margin="20,10,10,10" FontSize="15"/>
-                        <TextBlock Text="{x:Bind SchoolName}" Margin="5" FontSize="15"/>
+                        <TextBlock Text="{x:Bind SchoolName, Mode=OneWay}" Margin="5" FontSize="15"/>
                     </StackPanel>
                 </StackPanel>
                 <Button Content="&#xE712;" FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Right" VerticalAlignment="Top"/>
             </controls:DockPanel>
             <TextBlock Grid.Row="1" Margin="5" Text="{x:Bind Story, Mode=OneWay}" FontSize="20"/>
-            <Image VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Stretch="UniformToFill"
-                   Source="{Binding StoryImage, Mode=OneWay, ElementName=UserStory}" Height="500" Margin="1"/>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <ToggleButton x:Name="CommentButton" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="CommentButton_Click"
-                              Foreground="{ThemeResource SystemAccentColor}" Margin="1,0,0,0" Background="{ThemeResource SystemAltLowColor}">
+                <Image VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Stretch="UniformToFill"
+                       Source="{Binding StoryImage, Mode=OneWay, ElementName=UserStory}" Margin="1"
+                       Grid.ColumnSpan="2"/>
+                <ToggleButton x:Name="CommentButton" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Click="CommentButton_Click"
+                              Foreground="{ThemeResource SystemAccentColor}" Background="{ThemeResource SystemControlAcrylicElementBrush}">
                     <TextBlock FontSize="20">
                     <Run Text="Nhận dạy"/>
                     <Run Text="&#xEF90;" FontFamily="Segoe MDL2 Assets"/>
                     </TextBlock>
                 </ToggleButton>
-                <ToggleButton Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" 
-                              Foreground="{ThemeResource SystemAccentColor}" Margin="1,0,0,0" Background="{ThemeResource SystemAltLowColor}">
+                <ToggleButton Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" 
+                              Foreground="{ThemeResource SystemAccentColor}" Background="{ThemeResource SystemControlAcrylicElementBrush}">
                     <TextBlock FontSize="20">
                     <Run Text="Thích"/>
                     <Run Text="&#xE209;" FontFamily="Segoe MDL2 Assets"/>
@@ -67,11 +77,12 @@
                             <Grid HorizontalAlignment="Stretch">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="0.1*"/>
+                                    <ColumnDefinition Width="0.2*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBox x:Name="CommentInput" Grid.Column="0" BorderBrush="#f2b724" Foreground="#f2b724" HorizontalAlignment="Stretch" MinWidth="700"/>
-                                <Button Content="&#xE25C;" Foreground="#f2b724" BorderBrush="#f2b724" FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1"
-                                        Background="{ThemeResource SystemAltLowColor}" Margin="0" MinWidth="80"/>
+                                <Button Content="&#xE25C;" Foreground="#f2b724" BorderBrush="#f2b724" FontFamily="Segoe MDL2 Assets" 
+                                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" FontSize="20"
+                                        Background="{ThemeResource SystemAltLowColor}" MinHeight="45" MinWidth="50"/>
                             </Grid>
                         </ListView.Header>
                     </ListView>

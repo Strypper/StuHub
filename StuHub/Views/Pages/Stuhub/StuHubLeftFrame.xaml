@@ -1,14 +1,162 @@
-﻿<Page
-    x:Class="StuHub.Views.Pages.Stuhub.StuHubLeftFrame"
+﻿<UserControl
+    x:Class="StuHub.Views.Pages.Stuhub.StuhubLeftFrame"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:StuHub.Views.Pages.Stuhub"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls" 
+    xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations" xmlns:labs="using:AppStudio.Uwp.Labs" xmlns:stuhub="using:StuHub.Models.Stuhub" xmlns:stuhubvm="using:StuHub.ViewModels.PageViewModels"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    d:DesignHeight="1000"
+    d:DesignWidth="300">
+    
+    <UserControl.DataContext>
+        <stuhubvm:StuHubMainFrameViewModel/>
+    </UserControl.DataContext>
 
-    <Grid>
+    <ScrollViewer x:Name="LeftSide" Background="{ThemeResource SystemControlAcrylicWindowBrush}">
+        <animations:Implicit.ShowAnimations>
+            <animations:TranslationAnimation Duration="0:0:1" To="0, 0, 0"></animations:TranslationAnimation>
+            <animations:OpacityAnimation Duration="0:0:1" To="1.0"></animations:OpacityAnimation>
+        </animations:Implicit.ShowAnimations>
 
-    </Grid>
-</Page>
+        <animations:Implicit.HideAnimations>
+            <animations:ScalarAnimation Target="Opacity" Duration="0:0:1" To="0.0"></animations:ScalarAnimation>
+            <animations:ScalarAnimation Target="Translation.X" Duration="0:0:1" To="-200">
+                <animations:ScalarKeyFrame Key="0.1" Value="30"></animations:ScalarKeyFrame>
+                <animations:ScalarKeyFrame Key="0.5" Value="0.0"></animations:ScalarKeyFrame>
+            </animations:ScalarAnimation>
+        </animations:Implicit.HideAnimations>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="WindowsState">
+                <VisualState x:Name="VS1">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="2000"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="LeftSide.Visibility" Value="Visible"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="VS2">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1600"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="LeftSide.Visibility" Value="Visible"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="VS3">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="800"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="LeftSide.Visibility" Value="Visible"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="VS4">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="LeftSide.Visibility" Value="Collapsed"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+
+
+
+        <StackPanel Margin="0,10,0,0">
+            <Button x:Name="SchoolLogo" Margin="10" Width="100" Height="100" CornerRadius="50"
+                    VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Click="SchoolLogo_Click" Padding="0">
+                <Image Source="ms-appx:///Assets/DemoAssets/SchoolLogos/IU.png" Stretch="UniformToFill"/>
+            </Button>
+            <TextBlock Text="ĐẠI HỌC QUỐC TẾ" Margin="10" HorizontalAlignment="Center" FontWeight="ExtraBold" TextAlignment="Center"/>
+            <controls:DockPanel LastChildFill="False" Margin="10">
+                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF57E;" controls:DockPanel.Dock="Left"/>
+                <TextBlock controls:DockPanel.Dock="Right" TextAlignment="End" VerticalAlignment="Bottom">
+                        <Run Text="1050" FontWeight="Bold"/>
+                        <Run Text="Tin đăng"/>
+                </TextBlock>
+            </controls:DockPanel>
+            <controls:DockPanel LastChildFill="False" Margin="10">
+                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE129;" controls:DockPanel.Dock="Left"/>
+                <TextBlock controls:DockPanel.Dock="Right" TextAlignment="End" VerticalAlignment="Bottom">
+                        <Run Text="70" FontWeight="Bold"/>
+                        <Run Text="Nhóm/ Câu lạc bộ"/>
+                </TextBlock>
+            </controls:DockPanel>
+            <controls:DockPanel LastChildFill="False" Margin="10">
+                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE716;" controls:DockPanel.Dock="Left"/>
+                <TextBlock controls:DockPanel.Dock="Right" TextAlignment="End" VerticalAlignment="Bottom">
+                        <Run Text="102" FontWeight="Bold"/>
+                        <Run Text="Người đã tham gia hệ thống"/>
+                </TextBlock>
+            </controls:DockPanel>
+            <controls:DockPanel LastChildFill="False" Margin="10">
+                <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#x26A3;" controls:DockPanel.Dock="Left"/>
+                <TextBlock controls:DockPanel.Dock="Right" TextAlignment="End" VerticalAlignment="Bottom">
+                        <Run Text="70%" FontWeight="Bold"/>
+                        <Run Text="Nam"/>
+                </TextBlock>
+            </controls:DockPanel>
+            <ProgressBar x:Name="MaleBar" Margin="10,0,10,0" Value="70" Foreground="Green">
+                <ProgressBar.Triggers>
+                    <EventTrigger>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="MaleBar"
+                                                 Storyboard.TargetProperty="Value"
+                                                 EnableDependentAnimation="True"
+                                                 From="0"
+                                                 To="{x:Bind MaleBar.Value}">
+                                    <DoubleAnimation.EasingFunction>
+                                        <CubicEase/>
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </ProgressBar.Triggers>
+            </ProgressBar>
+            <controls:DockPanel LastChildFill="False" Margin="10">
+                <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#x26A2;" controls:DockPanel.Dock="Left"/>
+                <TextBlock controls:DockPanel.Dock="Right" TextAlignment="End" VerticalAlignment="Bottom">
+                        <Run Text="30%" FontWeight="Bold"/>
+                        <Run Text="Nữ"/>
+                </TextBlock>
+            </controls:DockPanel>
+            <ProgressBar x:Name="FemaleBar" Margin="10,0,10,10" Value="30" Foreground="Pink">
+                <ProgressBar.Triggers>
+                    <EventTrigger>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="FemaleBar"
+                                                 Storyboard.TargetProperty="Value"
+                                                 EnableDependentAnimation="True"
+                                                 From="0"
+                                                 To="{x:Bind FemaleBar.Value}">
+                                    <DoubleAnimation.EasingFunction>
+                                        <CubicEase/>
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </ProgressBar.Triggers>
+            </ProgressBar>
+            <TextBlock Text="Ảnh" Margin="10,10,10,0" FontWeight="Bold"/>
+            <labs:Mosaic Margin="10" ItemsSource="{Binding Stories}">
+                <labs:Mosaic.ItemTemplate>
+                    <DataTemplate x:DataType="stuhub:SchoolStory">
+                        <Image Stretch="UniformToFill" Source="{x:Bind StoryImageUrl}"/>
+                    </DataTemplate>
+                </labs:Mosaic.ItemTemplate>
+            </labs:Mosaic>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

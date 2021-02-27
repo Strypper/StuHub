@@ -10,11 +10,11 @@ namespace StuHub.Components.Cards.StuHub
     {
         public string StudentName
         {
-            get { return (string)GetValue(PersonNameProperty); }
-            set { SetValue(PersonNameProperty, value); }
+            get { return (string)GetValue(StudentNameProperty); }
+            set { SetValue(StudentNameProperty, value); }
         }
 
-        public static readonly DependencyProperty PersonNameProperty =
+        public static readonly DependencyProperty StudentNameProperty =
             DependencyProperty.Register("StudentName", typeof(string), typeof(SchoolStoryCard), null);
 
         public string SchoolName

@@ -1,19 +1,14 @@
-﻿using StuHub.Views.Pages.Stuhub;
+﻿using StuHub.Views;
+using StuHub.Views.Pages.Stuhub;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using Windows.ApplicationModel.Core;
+using Windows.UI;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 namespace StuHub
@@ -64,10 +59,28 @@ namespace StuHub
             {
                 if (rootFrame.Content == null)
                 {
+                    var CoreView = CoreApplication.GetCurrentView();
+                    var AppView = ApplicationView.GetForCurrentView();
+                    CoreApplicationViewTitleBar coreTitleBar = CoreView.TitleBar;
+                    coreTitleBar.ExtendViewIntoTitleBar = true;
+
+
+                    ApplicationViewTitleBar titleBar = AppView.TitleBar;
+                    titleBar.ButtonBackgroundColor = Colors.Transparent;
+                    //titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
+                    switch (RequestedTheme)
+                    {
+                        case ApplicationTheme.Light:
+                            titleBar.ButtonForegroundColor = Colors.Black;
+                            break;
+                        case ApplicationTheme.Dark:
+                            titleBar.ButtonForegroundColor = Colors.White;
+                            break;
+                    }
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
-                    rootFrame.Navigate(typeof(MainFrame), e.Arguments);
+                    rootFrame.Navigate(typeof(LoginRegisterView), e.Arguments, new SuppressNavigationTransitionInfo());
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();

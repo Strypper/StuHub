@@ -12,7 +12,7 @@
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.18362.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <TargetPlatformMinVersion>10.0.18362.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -119,20 +119,60 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Components\Cards\StuHub\SchoolClubCard.xaml.cs">
+      <DependentUpon>SchoolClubCard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Components\Cards\StuHub\SchoolStoryCard.xaml.cs">
       <DependentUpon>SchoolStoryCard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Components\Cards\Tutor\CollegeSubjectRequestOverViewCell.xaml.cs">
+      <DependentUpon>CollegeSubjectRequestOverViewCell.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\InteractionBehaviors.cs" />
-    <Compile Include="MainFrame.xaml.cs">
+    <Compile Include="LoginRegisterView.xaml.cs">
+      <DependentUpon>LoginRegisterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BaseEntity.cs" />
+    <Compile Include="Models\Stuhub\Club.cs" />
+    <Compile Include="Models\Stuhub\CollegeGroup.cs" />
+    <Compile Include="Models\Stuhub\CollegeSubject.cs" />
+    <Compile Include="Models\Stuhub\School.cs" />
+    <Compile Include="Models\Stuhub\Student.cs" />
+    <Compile Include="Models\Stuhub\StudyField.cs" />
+    <Compile Include="Models\Stuhub\StudyGroup.cs" />
+    <Compile Include="Models\Stuhub\Subject.cs" />
+    <Compile Include="Models\Stuhub\SubjectRequest.cs" />
+    <Compile Include="Models\TotechsCloud\City.cs" />
+    <Compile Include="Models\TotechsCloud\District.cs" />
+    <Compile Include="Models\TotechsCloud\Location.cs" />
+    <Compile Include="Models\UserModel.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\PageViewModels\StuHubMainFrameViewModel.cs" />
+    <Compile Include="Views\MainFrame.xaml.cs">
       <DependentUpon>MainFrame.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Stuhub\SchoolStory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\Pages\Stuhub\StuHubLeftFrame.xaml.cs">
-      <DependentUpon>StuHubLeftFrame.xaml</DependentUpon>
+    <Compile Include="Views\Pages\Stuhub\Components\SchoolCard.xaml.cs">
+      <DependentUpon>SchoolCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Stuhub\Components\SchoolsDialog.xaml.cs">
+      <DependentUpon>SchoolsDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Stuhub\Components\SchoolStoryComponent.xaml.cs">
+      <DependentUpon>SchoolStoryComponent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Stuhub\StuhubLeftFrame.xaml.cs">
+      <DependentUpon>StuhubLeftFrame.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\Stuhub\StuHubMainFrame.xaml.cs">
       <DependentUpon>StuHubMainFrame.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Stuhub\StuhubRightFrames\StuhubRightFramePivot.xaml.cs">
+      <DependentUpon>StuhubRightFramePivot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Tutor\CollegeSubjectRequest\CollegeSubjectRequest.xaml.cs">
+      <DependentUpon>CollegeSubjectRequest.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -141,8 +181,33 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\AppLogo\StuHub.png" />
-    <Content Include="Assets\AppLogo\StuHub.svg" />
+    <Content Include="Assets\AppLogo\Branches\facebook.png" />
+    <Content Include="Assets\AppLogo\Branches\google.png" />
+    <Content Include="Assets\AppLogo\Branches\microsoft.png" />
+    <Content Include="Assets\AppLogo\Branches\twitter.png" />
+    <Content Include="Assets\AppVideo\LoginRegisterVideo.mp4" />
+    <Content Include="Assets\DemoAssets\Club\GUITAR.jpg" />
+    <Content Include="Assets\DemoAssets\Club\IOT.png" />
+    <Content Include="Assets\DemoAssets\Club\UIUX.png" />
+    <Content Include="Assets\DemoAssets\ProfileImage\Gia.jpg" />
+    <Content Include="Assets\DemoAssets\ProfileImage\Hoàng.jpg" />
+    <Content Include="Assets\DemoAssets\ProfileImage\Hưng.jpg" />
+    <Content Include="Assets\DemoAssets\ProfileImage\Me%28ver 2019%29.jpg" />
+    <Content Include="Assets\DemoAssets\ProfileImage\Phát.jpg" />
+    <Content Include="Assets\DemoAssets\ProfileImage\Thuan.jpg" />
+    <Content Include="Assets\DemoAssets\ProfileImage\Trung.jpg" />
+    <Content Include="Assets\DemoAssets\SchoolLogos\BK.png" />
+    <Content Include="Assets\DemoAssets\SchoolLogos\BUH.jpg" />
+    <Content Include="Assets\DemoAssets\SchoolLogos\IU.png" />
+    <Content Include="Assets\DemoAssets\SchoolLogos\KHTN.png" />
+    <Content Include="Assets\DemoAssets\SchoolLogos\UIT.png" />
+    <Content Include="Assets\DemoAssets\SchoolStory\IUTest1.jpg" />
+    <Content Include="Assets\DemoAssets\SchoolStory\IUTest2.jpg" />
+    <Content Include="Assets\DemoAssets\SchoolStory\IUTest3.jpg" />
+    <Content Include="Assets\DemoAssets\SchoolStory\IUTest4.jpg" />
+    <Content Include="Assets\DemoAssets\SchoolStory\IUTest5.jpg" />
+    <Content Include="Assets\DemoAssets\SchoolStory\IUTest6.jpg" />
+    <Content Include="Assets\DemoAssets\SchoolStory\IUTest7.jpg" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -157,15 +222,39 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Components\Cards\StuHub\SchoolClubCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Components\Cards\StuHub\SchoolStoryCard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainFrame.xaml">
+    <Page Include="Components\Cards\Tutor\CollegeSubjectRequestOverViewCell.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoginRegisterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainFrame.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Pages\Stuhub\StuHubLeftFrame.xaml">
+    <Page Include="Views\Pages\Stuhub\Components\SchoolCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Stuhub\Components\SchoolsDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Stuhub\Components\SchoolStoryComponent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Stuhub\StuhubLeftFrame.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -173,37 +262,54 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Pages\Stuhub\StuhubRightFrames\StuhubRightFramePivot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Tutor\CollegeSubjectRequest\CollegeSubjectRequest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="MaterialLibs">
+      <Version>0.1.31</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.2.10</Version>
+      <Version>6.2.12</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit">
-      <Version>7.0.0-preview2</Version>
+      <Version>7.0.0-preview4</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp">
-      <Version>7.0.0-preview2</Version>
+      <Version>7.0.0-preview4</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications">
-      <Version>7.0.0-preview2</Version>
+      <Version>7.0.0-preview4</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI">
-      <Version>7.0.0-preview2</Version>
+      <Version>7.0.0-preview4</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Animations">
-      <Version>7.0.0-preview2</Version>
+      <Version>7.0.0-preview4</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
-      <Version>7.0.0-preview2</Version>
+      <Version>7.0.0-preview4</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Lottie">
-      <Version>6.1.0</Version>
+      <Version>7.0.0-preview4</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.UI.Xaml">
+      <Version>2.6.0-prerelease.210217002</Version>
+    </PackageReference>
+    <PackageReference Include="System.Runtime">
+      <Version>4.3.1</Version>
+    </PackageReference>
+    <PackageReference Include="WindowsAppStudio.Uwp">
+      <Version>1.5.3</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
-    <Folder Include="Views\Pages\Stuhub\StuhubRightFrames\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

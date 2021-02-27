@@ -1,0 +1,238 @@
+﻿<UserControl
+    x:Class="StuHub.Views.Pages.Stuhub.StuhubRightFrames.StuhubRightFramePivot"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:StuHub.Views.Pages.Stuhub.StuhubRightFrames"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations" 
+    xmlns:component="using:StuHub.Components.Cards.StuHub" 
+    xmlns:stuhubvm="using:StuHub.ViewModels.PageViewModels" 
+    xmlns:stuhub="using:StuHub.Models.Stuhub" xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    mc:Ignorable="d"
+    d:DesignHeight="1000"
+    d:DesignWidth="800">
+    
+    <UserControl.DataContext>
+        <stuhubvm:StuHubMainFrameViewModel/>
+    </UserControl.DataContext>
+
+    <Pivot x:Name="RightSide" Background="{ThemeResource SystemControlAcrylicWindowBrush}"
+           Padding="0,10,0,0">
+        <animations:Implicit.ShowAnimations>
+            <animations:TranslationAnimation Duration="0:0:1" To="0, 0, 0"></animations:TranslationAnimation>
+            <animations:OpacityAnimation Duration="0:0:1" To="1.0"></animations:OpacityAnimation>
+        </animations:Implicit.ShowAnimations>
+
+        <animations:Implicit.HideAnimations>
+            <animations:ScalarAnimation Target="Opacity" Duration="0:0:1" To="0.0"></animations:ScalarAnimation>
+            <animations:ScalarAnimation Target="Translation.X" Duration="0:0:1" To="200">
+                <animations:ScalarKeyFrame Key="0.1" Value="30"></animations:ScalarKeyFrame>
+                <animations:ScalarKeyFrame Key="0.5" Value="0.0"></animations:ScalarKeyFrame>
+            </animations:ScalarAnimation>
+        </animations:Implicit.HideAnimations>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="WindowsState">
+                <VisualState x:Name="VS1">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="2000"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="RightSide.Visibility" Value="Visible"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="VS2">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1600"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="RightSide.Visibility" Value="Visible"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="VS3">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="800"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="RightSide.Visibility" Value="Visible"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="VS4">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="RightSide.Visibility" Value="Collapsed"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <PivotItem>
+            <PivotItem.Header>
+                <TextBlock>
+                        <Run Text="&#xE8BD;" FontFamily="Segoe MDL2 Assets"/>
+                        <Run Text="Nói chuyện"/>
+                </TextBlock>
+            </PivotItem.Header>
+            <Grid>
+                <ListView ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                    <ListView.Header>
+                        <controls:ScrollHeader Mode="Sticky">
+                            <Grid Background="{ThemeResource SystemControlAcrylicElementBrush}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="35"/>
+                                    <RowDefinition Height="35"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="3*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <ComboBox Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch"
+                                          VerticalAlignment="Stretch" PlaceholderText="Trạng thái">
+                                    <ComboBoxItem Content="Hoạt động"/>
+                                    <ComboBoxItem Content="Bận việc"/>
+                                    <ComboBoxItem Content="Ẩn"/>
+                                </ComboBox>
+                                <Button Grid.Row="0" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                                    Content="&#xE789;" FontFamily="Segoe MDL2 Assets" Background="Transparent" FontSize="20">
+                                    <Button.Flyout>
+                                        <Flyout>
+                                            <TextBlock Text="Danh sách thông báo" Margin="0,0,0,12" />
+                                        </Flyout>
+                                    </Button.Flyout>
+                                </Button>
+                                <Button Grid.Row="0" Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                                    Content="&#xE910;" FontFamily="Segoe MDL2 Assets" Background="Transparent" FontSize="20">
+                                    <Button.Flyout>
+                                        <Flyout>
+                                            <TextBlock Text="Danh sách thông báo" Margin="0,0,0,12" />
+                                        </Flyout>
+                                    </Button.Flyout>
+                                </Button>
+                                <Button Grid.Row="0" Grid.Column="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                                    Content="&#xE716;" FontFamily="Segoe MDL2 Assets" Background="Transparent" FontSize="20">
+                                    <Button.Flyout>
+                                        <Flyout>
+                                            <TextBlock Text="Danh sách thông báo" Margin="0,0,0,12" />
+                                        </Flyout>
+                                    </Button.Flyout>
+                                </Button>
+                                <ComboBox HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4"
+                                          PlaceholderText="Kênh" Margin="0,5,0,0">
+                                    <ComboBoxItem Content="Tổng quan" FontWeight="Bold" IsHitTestVisible="False" Foreground="{ThemeResource SystemAccentColor}"/>
+                                    <ComboBoxItem Content="Tất cả"/>
+                                    <ComboBoxItem Content="Confessions"/>
+                                    <ComboBoxItem Content="Gia sư"/>
+                                    <ComboBoxItem Content="Kiếm crush"/>
+                                    <ComboBoxItem Content="Khoa" FontWeight="Bold" IsHitTestVisible="False" Foreground="{ThemeResource SystemAccentColor}"/>
+                                    <ComboBoxItem Content="IT"/>
+                                    <ComboBoxItem Content="EE"/>
+                                    <ComboBoxItem Content="BA"/>
+                                    <ComboBoxItem Content="ISE"/>
+                                </ComboBox>
+                            </Grid>
+                        </controls:ScrollHeader>
+                    </ListView.Header>
+                    <ListViewItem Content="Xin chào 👋👋👋" HorizontalAlignment="Left" Background="Gray" Margin="0,5,0,5"/>
+                    <ListViewItem Content="Chào 😁" HorizontalAlignment="Right" HorizontalContentAlignment="Right" Background="Green" Margin="0,5,0,5"/>
+                    <ListViewItem Content="Trường có câu lạc bộ nào về IoT không bạn nhỉ ?" HorizontalAlignment="Left" Background="Gray" Margin="0,5,0,5"/>
+                    <ListViewItem Content="Hình như có ấy trên lầu 6" HorizontalAlignment="Right" HorizontalContentAlignment="Right" Background="Green" Margin="0,5,0,5"/>
+                    <ListViewItem Content="Nhóm được cô bên Computer Network hỗ trợ" HorizontalAlignment="Right" HorizontalContentAlignment="Right" Background="Green" Margin="0,5,0,5"/>
+                    <ListViewItem Content="Có máy in 3d và công cụ hàn mạch đầy đủ" HorizontalAlignment="Right" HorizontalContentAlignment="Right" Background="Green" Margin="0,5,0,5"/>
+                    <ListViewItem Content="CLB có cần phải đóng tiền mỗi tháng không ?" HorizontalAlignment="Left" Background="Gray" Margin="0,5,0,5"/>
+                    <ListViewItem Content="Có bạn phí là 20.000 VNĐ mỗi tháng" HorizontalAlignment="Right" HorizontalContentAlignment="Right" Background="Green" Margin="0,5,0,5"/>
+                    <ListViewItem Content="Tiền dùng để duy trì nhóm" HorizontalAlignment="Right" HorizontalContentAlignment="Right" Background="Green" Margin="0,5,0,5"/>
+                    <ListViewItem Content="Mua đồ cho dự án mới + thay thế đồ bị hỏng" HorizontalAlignment="Right" HorizontalContentAlignment="Right" Background="Green" Margin="0,5,0,5"/>
+                    <ListViewItem Content="Và dùng để đi team building" HorizontalAlignment="Right" HorizontalContentAlignment="Right" Background="Green" Margin="0,5,0,5"/>
+                    <ListViewItem Content="Mình có thể để đồ đạc ở lại được không ?" HorizontalAlignment="Left" Background="Gray" Margin="0,5,0,5"/>
+                    <ListViewItem Content="Được bạn" HorizontalAlignment="Right" HorizontalContentAlignment="Right" Background="Green" Margin="0,5,0,5"/>
+                    <ListViewItem Content="Ok làm sao để mình đăng ký ?" HorizontalAlignment="Left" Background="Gray" Margin="0,5,0,5"/>
+                    <ListViewItem HorizontalAlignment="Right" HorizontalContentAlignment="Right" Background="Green" Margin="0,5,0,5">
+                        <StackPanel Margin="5,5,5,15">
+                            <TextBlock Text="Bạn có thể liên lạc bạn Thuận" TextAlignment="End" Margin="5"/>
+                            <StackPanel Orientation="Horizontal" Background="Gray" Padding="5">
+                                <PersonPicture Width="50" ProfilePicture="ms-appx:///Assets/DemoAssets/ProfileImage/Thuan.jpg"/>
+                                <StackPanel>
+                                    <TextBlock Text="Nguyễn Phan Hùng Thuận" FontWeight="Bold" Margin="5"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button VerticalAlignment="Bottom" Content="Nhắn tin" Margin="5"/>
+                                        <Button VerticalAlignment="Bottom" Content="Tìm hiểu" Margin="0,5,5,5"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Content="Cảm ơn bạn bạn có thông tin về câu lạc bộ không ?" HorizontalAlignment="Left" Background="Gray" Margin="0,5,0,5"/>
+                    <ListView.Footer>
+                        <Rectangle Fill="Transparent" Height="50"/>
+                    </ListView.Footer>
+                </ListView>
+                <controls:DockPanel Background="{ThemeResource SystemControlAcrylicElementBrush}" VerticalAlignment="Bottom" LastChildFill="True" Padding="5">
+                    <Button controls:DockPanel.Dock="Right" Content="&#xE724;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="50" Height="40"
+                            Margin="2,0,0,0" Background="Transparent"/>
+                    <TextBox controls:DockPanel.Dock="Left" HorizontalAlignment="Stretch"/>
+                </controls:DockPanel>
+            </Grid>
+        </PivotItem>
+        <PivotItem>
+            <PivotItem.Header>
+                <TextBlock>
+                        <Run Text="&#xEC32;" FontFamily="Segoe MDL2 Assets"/>
+                        <Run Text="Khuyến mãi"/>
+                </TextBlock>
+            </PivotItem.Header>
+        </PivotItem>
+        <PivotItem>
+            <PivotItem.Header>
+                <TextBlock>
+                        <Run Text="&#xE125;" FontFamily="Segoe MDL2 Assets"/>
+                        <Run Text="Bạn bè"/>
+                </TextBlock>
+            </PivotItem.Header>
+        </PivotItem>
+        <PivotItem>
+            <PivotItem.Header>
+                <TextBlock>
+                        <Run Text="&#xE156;" FontFamily="Segoe MDL2 Assets"/>
+                        <Run Text="Gia sư"/>
+                </TextBlock>
+            </PivotItem.Header>
+        </PivotItem>
+        <PivotItem Padding="0" Margin="0">
+            <PivotItem.Header>
+                <TextBlock>
+                        <Run Text="&#xE129;" FontFamily="Segoe MDL2 Assets"/>
+                        <Run Text="Câu lạc bộ"/>
+                </TextBlock>
+            </PivotItem.Header>
+            <ListView x:Name="ClubList" IsMultiSelectCheckBoxEnabled="False" SelectionMode="None"
+                      ItemsSource="{Binding Clubs}">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="stuhub:Club">
+                        <component:SchoolClubCard ClubId="{x:Bind ClubId}" ClubName="{x:Bind ClubName}" ClubLogoUrl="{x:Bind ClubLogoURL, Mode=OneWay}" Requirement="{x:Bind Requirement}" Color="{x:Bind Color}"
+                                                  ClubPhoneNumber="{x:Bind PhoneNumbers}" ClubCoverImageUrl="{x:Bind ClubCoverImageURL, Mode=OneWay}" Intro="{x:Bind Intro}" Detail="{x:Bind Detail}" DateStarted="{x:Bind DateStarted}"
+                                                  Members="{x:Bind Members}" ClubPrice="{x:Bind ClubPrice}" Email="{x:Bind Email}" Rating="{x:Bind Rating}" Location="{x:Bind Location}" Margin="0,10,0,10"></component:SchoolClubCard>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Footer>
+                    <CommandBar Background="{ThemeResource SystemAltHighColor}" IsOpen="False" DefaultLabelPosition="Bottom">
+                        <AppBarButton Icon="Add" Label="Add"/>
+                        <AppBarButton Icon="Edit" Label="Edit"/>
+                        <AppBarButton Icon="Share" Label="Share"/>
+                        <CommandBar.SecondaryCommands>
+                            <AppBarButton Icon="Setting" Label="Settings">
+                                <AppBarButton.KeyboardAccelerators>
+                                    <KeyboardAccelerator Modifiers="Control" Key="I" />
+                                </AppBarButton.KeyboardAccelerators>
+                            </AppBarButton>
+                        </CommandBar.SecondaryCommands>
+                    </CommandBar>
+                </ListView.Footer>
+            </ListView>
+        </PivotItem>
+    </Pivot>
+</UserControl>
